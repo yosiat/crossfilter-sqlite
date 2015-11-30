@@ -3,7 +3,15 @@
 Crossfilter with SQLite as a backend, for filtering data which is larger than the maximum heap size of javascript, and still using the dc.js & crossfilter magic of
 slicing and dicing.
 
+## Installation
+
+```
+npm install crossfilter-sql
+```
+
+
 ## How to use?
+
 ```javascript
 var sc = require('crossfilter-sql');
 
