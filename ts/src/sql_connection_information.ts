@@ -1,6 +1,6 @@
 import * as sqlite3 from 'sqlite3';
 
-export default class SqlConnectionInformation {
+export class SqlConnectionInformation {
     // TODO: switch to real sql connection here
     dbFile: string;
     tableName: string;

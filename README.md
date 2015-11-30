@@ -4,12 +4,15 @@ Crossfilter with SQLite as a backend, for filtering data which is larger than th
 slicing and dicing.
 
 ## How to use?
-```typescript
-var sqlConnectionInformation: SqlConnectionInformation = new SqlConnectionInformation("DB_FILE", "DB_TABLE");
-var sqlCrossfilter: SqlCrossfilter<ROW_TYPE> = new SqlCrossfilter<ROW_TYPE>(sqlConnectionInformation);
+```javascript
+var sc = require('crossfilter-sql');
 
-var typeDimension: SqlDimension<ROW_TYPE, string> =  sqlCrossfilter.dimension<string>("type");
-var methodDimension: SqlDimension<ROW_TYPE, string> =  sqlCrossfilter.dimension<string>("method");
+var sqlConnectionInformation = new sc.SqlConnectionInformation("DB_FILE", "DB_TABLE");
+var sqlCrossfilter = new sc.SqlCrossfilter(sqlConnectionInformation);
+
+// Create dimension based on "type" and "method" columns in "DB_TABLE"
+var typeDimension =  sqlCrossfilter.dimension("type");
+var methodDimension =  sqlCrossfilter.dimension("method");
 
 // Use evaluateAll to evaluate all queries, to create the initial groups
 sqlCrossfilter.evaluateAll().then(function() {
@@ -24,7 +27,7 @@ sqlCrossfilter.evaluateAll().then(function() {
 ```
 
 ## How does this connects to dc.js?
-The idea is to use dc.js commitHandler (https://github.com/dc-js/dc.js/blob/58766e518a6e171c18a057e2886ff4d7b7fe4fdf/web/docs/api-latest.md#dc.baseMixin+commitHandler),
+The idea is to use [dc.js commitHandler](https://github.com/dc-js/dc.js/blob/58766e518a6e171c18a057e2886ff4d7b7fe4fdf/web/docs/api-latest.md#dc.baseMixin+commitHandler),
 on the commitHandler function call the evaluateAll and then call the commitHandler callback, and dc will do the rest.
 
 ## Is it working? completed?
